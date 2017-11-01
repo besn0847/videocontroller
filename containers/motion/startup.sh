@@ -1,3 +1,3 @@
-#!/bin/ash
+#!/bin/bash
 
 motion -c /conf/motion.conf

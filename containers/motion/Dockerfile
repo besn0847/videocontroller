@@ -1,8 +1,12 @@
-FROM alpine
+FROM debian
 
-RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories &&\
-	apk update && \
-	apk add motion
+RUN apt-get update \
+        && apt-get install -y --force-yes --no-install-recommends \
+                motion \
+        && apt-get autoclean \
+        && apt-get autoremove \
+        && rm -rf /var/lib/apt/lists/*
+
 
 ADD startup.sh /
 
