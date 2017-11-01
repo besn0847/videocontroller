@@ -18,6 +18,8 @@ RUN chmod +x /startup.sh \
 ADD sample.avi /data/
 ADD vlc-nox.conf /conf/
 
+EXPOSE 8888
+
 WORKDIR /
 
 ENTRYPOINT ["/startup.sh"]
