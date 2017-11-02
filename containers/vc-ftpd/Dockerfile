@@ -4,15 +4,20 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositorie
 	apk update && \
 	apk add proftpd
 
-ADD proftpd.conf /etc/ 
+ADD startup.sh /
 
 RUN mkdir /data &&\
-	adduser -h /data -H -D -s /bin/ash default &&\
+	mkdir /conf &&\
+	chmod +x /startup.sh &&\
+	adduser -h / -H -D -s /bin/ash default &&\
 	echo "default:passw0rd" | chpasswd &&\
 	chown -R default.default /data &&\
+	chown -R default.default /conf &&\
 	mkdir -p /run/proftpd/ &&\
 	touch /run/proftpd/proftpd.pid
 
+ADD proftpd.conf /conf/ 
+
 EXPOSE 20 21
 
-CMD proftpd -n --config /etc/proftpd.conf
+CMD proftpd -n --config /conf/proftpd.conf

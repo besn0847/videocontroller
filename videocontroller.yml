@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: vc
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: vc
+    spec:
+       containers:
+       - name: ftpd
+         image: besn0847/ftpd
+         ports:
+           - containerPort: 20
+           - containerPort: 21
+         volumeMounts:
+         - name: ftp-persistent-storage
+           mountPath: /data
+       - name: plex
+         image: besn0847/plex
+         ports:
+           - containerPort: 32400
+         volumeMounts:
+         - name: ftp-persistent-storage
+           mountPath: /data
+       volumes:
+       - name: ftp-persistent-storage
+         emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-vc
+  labels:
+    run : vc
+spec:
+  selector:
+    app: vc
+  type: NodePort
+  ports:
+   - name: port20
+     protocol: TCP
+     port: 20
+     nodePort: 30020
+   - name: port21
+     protocol: TCP
+     port: 21
+     nodePort: 30021
+   - name: port32400
+     protocol: TCP
+     port: 32400
+     nodePort: 30000
