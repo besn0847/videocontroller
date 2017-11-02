@@ -1,3 +1,7 @@
 #!/bin/bash
 
-motion -c /conf/motion.conf
+while(true)
+do
+	motion -c /conf/motion.conf
+	sleep 5
+done

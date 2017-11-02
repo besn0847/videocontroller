@@ -18,6 +18,6 @@ RUN chmod +x /startup.sh \
 
 ADD motion.conf /conf/
 
-EXPOSE 8080 8081
+EXPOSE 8081
 
 CMD /startup.sh 
