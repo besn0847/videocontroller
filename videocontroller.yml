@@ -1,8 +1,8 @@
 apiVersion: v1
 data:
   vlc-nox-k8s.conf: |
-    URL="rtsp://77570.besnard.mobi:554/user=remote&password=r3m0t3&channel=1&stream=1.sdp"
-    TRANSCODE="#transcode{vcodec=mjpg,vb=2500,scale=1.0,fps=15,acodec=none}:standard{access=http{mime=multipart/x-mixed-replace;boundary=7b3cc56e5f51db803f790dad720ed50a},mux=mpjpeg,dst=:8888/videostream}"
+    URL=/data/sample.avi
+    TRANSCODE="#transcode{vcodec=mjpg,vb=2500,scale=1.0,fps=10,acodec=none}:standard{access=http{mime=multipart/x-mixed-replace;boundary=7b3cc56e5f51db803f790dad720ed50a},mux=mpjpeg,dst=:8888/videostream}"
 kind: ConfigMap
 metadata:
   name: vlc-config
@@ -21,7 +21,7 @@ spec:
        containers:
        - name: vc-ssh
          image: besn0847/videocontroller:vc-ssh
-         imagePullPolicy: Never 
+         imagePullPolicy: IfNotPresent 
          ports:
            - containerPort: 22
          volumeMounts:
@@ -31,7 +31,7 @@ spec:
            mountPath: /data
        - name: vc-plex
          image: besn0847/videocontroller:vc-plex
-         imagePullPolicy: Never 
+         imagePullPolicy: IfNotPresent 
          ports:
            - containerPort: 32400
          volumeMounts:
@@ -41,7 +41,7 @@ spec:
            mountPath: /data
        - name: vc-vlc
          image: besn0847/videocontroller:vc-vlc
-         imagePullPolicy: Never 
+         imagePullPolicy: IfNotPresent 
          ports:
            - containerPort: 8888
          volumeMounts:
@@ -53,7 +53,7 @@ spec:
            mountPath: /conf/k8s
        - name: vc-motion
          image: besn0847/videocontroller:vc-motion
-         imagePullPolicy: Never 
+         imagePullPolicy: IfNotPresent 
          ports:
            - containerPort: 8081
          volumeMounts:
