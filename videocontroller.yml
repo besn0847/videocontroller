@@ -11,7 +11,7 @@ spec:
     spec:
        containers:
        - name: vc-ftpd
-         image: besn0847/videcontroller:vc-ftpd
+         image: besn0847/videocontroller:vc-ftpd
          ports:
            - containerPort: 20
            - containerPort: 21
@@ -21,7 +21,7 @@ spec:
          - name: data-persistent-storage
            mountPath: /data
        - name: vc-plex
-         image: besn0847/videcontroller:vc-plex
+         image: besn0847/videocontroller:vc-plex
          ports:
            - containerPort: 32400
          volumeMounts:
@@ -30,7 +30,7 @@ spec:
          - name: data-persistent-storage
            mountPath: /data
        - name: vc-vlc
-         image: besn0847/videcontroller:vc-vlc
+         image: besn0847/videocontroller:vc-vlc
          ports:
            - containerPort: 8888
          volumeMounts:
@@ -39,7 +39,7 @@ spec:
          - name: data-persistent-storage
            mountPath: /data
        - name: vc-motion
-         image: besn0847/videcontroller:vc-motion
+         image: besn0847/videocontroller:vc-motion
          ports:
            - containerPort: 8081
          volumeMounts:
