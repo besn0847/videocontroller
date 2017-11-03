@@ -2,7 +2,7 @@ FROM alpine
 
 RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories &&\
 	apk update && \
-	apk add openssh
+	apk add openssh sudo
 
 ADD startup.sh /
 
@@ -13,7 +13,8 @@ RUN mkdir /data &&\
 	adduser -h / -H -D -s /bin/ash default &&\
 	echo "default:passw0rd" | chpasswd &&\
 	chown -R default.default /data &&\
-	chown -R default.default /conf 
+	chown -R default.default /conf &&\
+	echo "default ALL=(ALL) ALL" >> /etc/sudoers 
 
 ADD sshd.conf /bootstrap/
 
