@@ -12,11 +12,12 @@ ADD startup.sh /
 RUN chmod +x /startup.sh \
 	&& mkdir /data \
 	&& mkdir /conf \
+	&& mkdir /bootstrap \
 	&& useradd -b /home/vlc -d /home/vlc -s /bin/bash -m vlc \
 	&& echo "vlc:passw0rd" | chpasswd
 
-ADD sample.avi /data/
-ADD vlc-nox.conf /conf/
+ADD sample.avi /bootstrap/
+ADD vlc-nox.conf /bootstrap/
 
 EXPOSE 8888
 

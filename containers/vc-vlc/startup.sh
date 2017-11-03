@@ -1,5 +1,12 @@
 #!/bin/sh
 
+if [ ! -f /conf/.bootstrapped ]
+then
+	cp /bootstrap/vlc-nox.conf /conf/
+	cp /bootstrap/sample.avi /data/
+	echo 1 > /conf/.bootstrapped
+fi
+
 . /conf/vlc-nox.conf
 
 while(true)

@@ -14,10 +14,11 @@ RUN chmod +x /startup.sh \
         && mkdir -p /data/Motion/movies \
         && mkdir -p /data/Motion/pictures \
         && mkdir /conf \
+        && mkdir /bootstrap \
 	&& touch /data/Motion/motion.pid
 
-ADD motion.conf /conf/
+ADD motion.conf /bootstrap/
 
 EXPOSE 8081
 
-CMD /startup.sh 
+ENTRYPOINT ["/startup.sh"]

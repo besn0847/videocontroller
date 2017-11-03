@@ -10,23 +10,29 @@ spec:
         app: vc
     spec:
        containers:
-       - name: ftpd
-         image: besn0847/ftpd
+       - name: vc-ftpd
+         image: besn0847/videcontroller:vc-ftpd
          ports:
            - containerPort: 20
            - containerPort: 21
          volumeMounts:
-         - name: ftp-persistent-storage
+         - name: conf-persistent-storage
+           mountPath: /conf
+         - name: data-persistent-storage
            mountPath: /data
-       - name: plex
-         image: besn0847/plex
+       - name: vc-plex
+         image: besn0847/videcontroller:vc-plex
          ports:
            - containerPort: 32400
          volumeMounts:
-         - name: ftp-persistent-storage
+         - name: conf-persistent-storage
+           mountPath: /conf
+         - name: data-persistent-storage
            mountPath: /data
        volumes:
-       - name: ftp-persistent-storage
+       - name: conf-persistent-storage
+         emptyDir: {}
+       - name: data-persistent-storage
          emptyDir: {}
 ---
 apiVersion: v1

@@ -8,6 +8,7 @@ ADD startup.sh /
 
 RUN mkdir /data &&\
 	mkdir /conf &&\
+	mkdir /bootstrap &&\
 	chmod +x /startup.sh &&\
 	adduser -h / -H -D -s /bin/ash default &&\
 	echo "default:passw0rd" | chpasswd &&\
@@ -16,8 +17,8 @@ RUN mkdir /data &&\
 	mkdir -p /run/proftpd/ &&\
 	touch /run/proftpd/proftpd.pid
 
-ADD proftpd.conf /conf/ 
+ADD proftpd.conf /bootstrap/ 
 
 EXPOSE 20 21
 
-CMD proftpd -n --config /conf/proftpd.conf
+ENTRYPOINT ["/startup.sh"]
