@@ -7,9 +7,9 @@ then
 	echo 1 > /conf/.bootstrapped_vlc
 fi
 
-if [ -f /conf/vlc-nox-k8s.conf ]
+if [ -f /conf/k8s/vlc-nox-k8s.conf ]
 then
-	. /conf/vlc-nox-k8s.conf
+	. /conf/k8s/vlc-nox-k8s.conf
 else 
 	. /conf/vlc-nox.conf
 fi
