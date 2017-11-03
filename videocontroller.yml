@@ -29,6 +29,24 @@ spec:
            mountPath: /conf
          - name: data-persistent-storage
            mountPath: /data
+       - name: vc-vlc
+         image: besn0847/videcontroller:vc-vlc
+         ports:
+           - containerPort: 8888
+         volumeMounts:
+         - name: conf-persistent-storage
+           mountPath: /conf
+         - name: data-persistent-storage
+           mountPath: /data
+       - name: vc-motion
+         image: besn0847/videcontroller:vc-motion
+         ports:
+           - containerPort: 8081
+         volumeMounts:
+         - name: conf-persistent-storage
+           mountPath: /conf
+         - name: data-persistent-storage
+           mountPath: /data
        volumes:
        - name: conf-persistent-storage
          emptyDir: {}
@@ -58,3 +76,11 @@ spec:
      protocol: TCP
      port: 32400
      nodePort: 30000
+   - name: port8081
+     protocol: TCP
+     port: 8081
+     nodePort: 30081
+   - name: port8888
+     protocol: TCP
+     port: 8888
+     nodePort: 30088
