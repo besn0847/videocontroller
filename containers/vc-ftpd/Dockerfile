@@ -19,6 +19,6 @@ RUN mkdir /data &&\
 
 ADD proftpd.conf /bootstrap/ 
 
-EXPOSE 20 21
+EXPOSE 30020 30021
 
 ENTRYPOINT ["/startup.sh"]

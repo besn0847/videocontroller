@@ -13,8 +13,8 @@ spec:
        - name: vc-ftpd
          image: besn0847/videocontroller:vc-ftpd
          ports:
-           - containerPort: 20
-           - containerPort: 21
+           - containerPort: 30020
+           - containerPort: 30021
          volumeMounts:
          - name: conf-persistent-storage
            mountPath: /conf
@@ -64,13 +64,13 @@ spec:
     app: vc
   type: NodePort
   ports:
-   - name: port20
+   - name: port30020
      protocol: TCP
-     port: 20
+     port: 30020
      nodePort: 30020
-   - name: port21
+   - name: port30021
      protocol: TCP
-     port: 21
+     port: 30021
      nodePort: 30021
    - name: port32400
      protocol: TCP
