@@ -7,7 +7,12 @@ then
 	echo 1 > /conf/.bootstrapped_vlc
 fi
 
-. /conf/vlc-nox.conf
+if [ -f /conf/vlc-nox-k8s.conf ]
+then
+	. /conf/vlc-nox-k8s.conf
+else 
+	. /conf/vlc-nox.conf
+fi
 
 while(true)
 do
