@@ -10,11 +10,11 @@ spec:
         app: vc
     spec:
        containers:
-       - name: vc-ftpd
-         image: besn0847/videocontroller:vc-ftpd
+       - name: vc-ssh
+         image: besn0847/videocontroller:vc-ssh
+         imagePullPolicy: Always 
          ports:
-           - containerPort: 30020
-           - containerPort: 30021
+           - containerPort: 22
          volumeMounts:
          - name: conf-persistent-storage
            mountPath: /conf
@@ -64,14 +64,10 @@ spec:
     app: vc
   type: NodePort
   ports:
-   - name: port30020
+   - name: port30022
      protocol: TCP
-     port: 30020
-     nodePort: 30020
-   - name: port30021
-     protocol: TCP
-     port: 30021
-     nodePort: 30021
+     port: 30022
+     nodePort: 30022
    - name: port32400
      protocol: TCP
      port: 32400

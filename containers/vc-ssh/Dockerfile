@@ -2,7 +2,7 @@ FROM alpine
 
 RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories &&\
 	apk update && \
-	apk add proftpd
+	apk add openssh
 
 ADD startup.sh /
 
@@ -13,12 +13,13 @@ RUN mkdir /data &&\
 	adduser -h / -H -D -s /bin/ash default &&\
 	echo "default:passw0rd" | chpasswd &&\
 	chown -R default.default /data &&\
-	chown -R default.default /conf &&\
-	mkdir -p /run/proftpd/ &&\
-	touch /run/proftpd/proftpd.pid
+	chown -R default.default /conf 
 
-ADD proftpd.conf /bootstrap/ 
+ADD sshd.conf /bootstrap/
 
-EXPOSE 30020 30021
+RUN /usr/bin/ssh-keygen -A &&\
+	ssh-keygen -t rsa -b 4096 -f  /etc/ssh/ssh_host_key
+
+EXPOSE 22
 
 ENTRYPOINT ["/startup.sh"]
