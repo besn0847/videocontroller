@@ -55,7 +55,18 @@ spec:
          image: besn0847/videocontroller:vc-motion
          imagePullPolicy: IfNotPresent 
          ports:
+           - containerPort: 8080
            - containerPort: 8081
+         volumeMounts:
+         - name: conf-persistent-storage
+           mountPath: /conf
+         - name: data-persistent-storage
+           mountPath: /data
+       - name: vc-nodered
+         image: besn0847/videocontroller:vc-nodered
+         imagePullPolicy: IfNotPresent 
+         ports:
+           - containerPort: 1880
          volumeMounts:
          - name: conf-persistent-storage
            mountPath: /conf
@@ -93,7 +104,3 @@ spec:
      protocol: TCP
      port: 8081
      nodePort: 30081
-   - name: port8888
-     protocol: TCP
-     port: 8888
-     nodePort: 30088
