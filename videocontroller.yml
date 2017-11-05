@@ -64,7 +64,7 @@ spec:
            mountPath: /data
        - name: vc-nodered
          image: besn0847/videocontroller:vc-nodered
-         imagePullPolicy: IfNotPresent 
+         imagePullPolicy: Always 
          ports:
            - containerPort: 1880
          volumeMounts:
