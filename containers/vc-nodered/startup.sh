@@ -8,5 +8,5 @@ fi
 
 while(true)
 do
-	npm start -- --userDir /data --settings /conf/settings.js
+	sudo -u vc npm start -- --userDir /data --settings /conf/settings.js
 done

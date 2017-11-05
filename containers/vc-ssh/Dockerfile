@@ -10,11 +10,11 @@ RUN mkdir /data &&\
 	mkdir /conf &&\
 	mkdir /bootstrap &&\
 	chmod +x /startup.sh &&\
-	adduser -h / -H -D -s /bin/ash default &&\
-	echo "default:passw0rd" | chpasswd &&\
-	chown -R default.default /data &&\
-	chown -R default.default /conf &&\
-	echo "default ALL=(ALL) ALL" >> /etc/sudoers 
+	adduser -h / -H -D -u 1000 -s /bin/ash vc &&\
+	echo "vc:passw0rd" | chpasswd &&\
+	chown -R vc.vc /data &&\
+	chown -R vc.vc /conf &&\
+	echo "vc ALL=(ALL) ALL" >> /etc/sudoers 
 
 ADD sshd.conf /bootstrap/
 

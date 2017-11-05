@@ -6,4 +6,7 @@ then
 	echo 1 > /conf/.bootstrapped_sshd
 fi
 
-/usr/sbin/sshd -D -f /conf/sshd.conf
+while(true)
+do
+	/usr/sbin/sshd -D -f /conf/sshd.conf
+done

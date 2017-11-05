@@ -16,6 +16,7 @@ fi
 
 while(true)
 do
-	su -c "vlc --rc-host 127.0.0.1:10000 --loop --sout \""$TRANSCODE"\" $URL" vlc
+	#su -c "vlc --rc-host 127.0.0.1:10000 --loop --sout \""$TRANSCODE"\" $URL" vc
+	sudo -u vc vlc --rc-host 127.0.0.1:10000 --loop --sout "$TRANSCODE" $URL
 	sleep 5
 done
