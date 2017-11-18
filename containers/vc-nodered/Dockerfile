@@ -23,12 +23,13 @@ USER vc
 
 COPY package.json /usr/src/node-red/ 
 ADD settings.js /bootstrap/
+ADD flows.json /bootstrap/
 
 RUN npm install &&\
 	npm install node-red-admin &&\
 	npm install node-red-contrib-fs-ops
 
-ENV FLOWS=flows.json
+ENV FLOWS=/conf/flows.json
 
 EXPOSE 1880
 
